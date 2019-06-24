@@ -4,6 +4,8 @@
 }
 
 .Note__Header {
+  display: flex;
+  justify-content: space-between;
   height: 20px;
   padding: 8px;
   border-bottom: 1px solid black;
@@ -11,4 +13,9 @@
 
 .Note__Body {
   padding: 8px;
+}
+
+.Note .Button {
+  padding-top: 0;
+  padding-bottom: 0;
 }

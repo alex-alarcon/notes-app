@@ -13,7 +13,6 @@ function App() {
   const {
     state: { notes },
     addNote,
-    removeNote,
     editNote
   } = useContext(NotesContext);
   const initialState = { body: '', color: COLORS.YELLOW };
