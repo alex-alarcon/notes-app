@@ -3,7 +3,11 @@ import { PropTypes } from 'prop-types';
 
 import './index.css';
 
-function NoteEditor({ note, handleChange }) {
+import RadioButton from '../Radio';
+
+import BGCOLORS from '../../constants/backgroundColors';
+
+function NoteEditor({ note, handleTextChange, handleRadioChange }) {
   return (
     <div className="NoteEditor">
       <textarea
@@ -11,8 +15,22 @@ function NoteEditor({ note, handleChange }) {
         rows={5}
         className="NoteEditor__Input"
         value={note.body}
-        onChange={handleChange}
+        onChange={handleTextChange}
       />
+      <div className="Radio__Container">
+        {Object.keys(BGCOLORS).map(color => {
+          const id = `radio-${BGCOLORS[color]}`;
+          return (
+            <RadioButton
+              id={id}
+              value={BGCOLORS[color]}
+              checked={note.color === BGCOLORS[color]}
+              handleChange={handleRadioChange}
+              key={id}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -22,7 +40,8 @@ NoteEditor.propTypes = {
     id: PropTypes.number,
     body: PropTypes.string
   }),
-  handleChange: PropTypes.func
+  handleTextChange: PropTypes.func,
+  handleRadioChange: PropTypes.func
 };
 
 NoteEditor.defaultProps = {
@@ -30,7 +49,8 @@ NoteEditor.defaultProps = {
     id: +new Date(),
     body: ''
   },
-  handleChange() {}
+  handleTextChange() {},
+  handleRadioChange() {}
 };
 
 export default NoteEditor;

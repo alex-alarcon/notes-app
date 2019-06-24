@@ -5,6 +5,8 @@ import './index.css';
 
 import { NotesContext } from '../../store/notesContext';
 
+import BGCOLORS from '../../constants/backgroundColors';
+
 import NoteList from '../../components/NoteList';
 import IconButton from '../../components/IconButton';
 import NoteEditor from '../../components/NoteEditor';
@@ -16,12 +18,21 @@ function App() {
     removeNote,
     editNote
   } = useContext(NotesContext);
-  const [state, setState] = useState({ note: {} });
+  const [state, setState] = useState({
+    note: { body: '', color: BGCOLORS.BG_YELLOW }
+  });
   return (
     <div className="App">
       <NoteEditor
         note={state.note}
-        handleChange={event => setState({ note: { body: event.target.value } })}
+        handleTextChange={event =>
+          setState({ note: { ...state.note, body: event.target.value } })
+        }
+        handleRadioChange={event =>
+          setState({
+            note: { ...state.note, color: event.target.value }
+          })
+        }
       />
       <NoteList notes={notes} />
       <IconButton
