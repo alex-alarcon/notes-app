@@ -5,7 +5,7 @@ import './index.css';
 
 import { NotesContext } from '../../store/notesContext';
 
-import BGCOLORS from '../../constants/backgroundColors';
+import COLORS from '../../constants/backgroundColors';
 
 import NoteList from '../../components/NoteList';
 import IconButton from '../../components/IconButton';
@@ -19,7 +19,7 @@ function App() {
     editNote
   } = useContext(NotesContext);
   const [state, setState] = useState({
-    note: { body: '', color: BGCOLORS.BG_YELLOW }
+    note: { body: '', color: COLORS.YELLOW }
   });
   return (
     <div className="App">

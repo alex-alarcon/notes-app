@@ -8,8 +8,9 @@ import RadioButton from '../Radio';
 import BGCOLORS from '../../constants/backgroundColors';
 
 function NoteEditor({ note, handleTextChange, handleRadioChange }) {
+  const noteEditorClasses = `NoteEditor bg-${note.color}`;
   return (
-    <div className="NoteEditor">
+    <div className={noteEditorClasses}>
       <textarea
         placeholder="What do you want to write?"
         rows={5}
