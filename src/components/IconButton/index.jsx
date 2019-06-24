@@ -7,7 +7,7 @@ import Icon from '../Icon';
 
 function IconButton({ iconName, handleClick }) {
   return (
-    <button type="button" className="Button">
+    <button type="button" className="Button" onClick={handleClick}>
       <Icon iconName={iconName} />
     </button>
   );

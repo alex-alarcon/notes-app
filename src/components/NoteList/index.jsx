@@ -5,7 +5,7 @@ import Note from '../Note';
 
 function NoteList({ notes }) {
   const notesList = notes.length ? (
-    notes.map(note => <Note note={note} />)
+    notes.map(note => <Note note={note} key={note.id} />)
   ) : (
     <p>There are not notes </p>
   );
