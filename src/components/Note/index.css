@@ -1,0 +1,14 @@
+.Note {
+  border: 1px solid black;
+  width: 350px;
+}
+
+.Note__Header {
+  height: 20px;
+  padding: 8px;
+  border-bottom: 1px solid black;
+}
+
+.Note__Body {
+  padding: 8px;
+}
