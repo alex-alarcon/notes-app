@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
+
+import { NoteContext } from '../../store/noteContext';
 
 import Note from '../Note';
 
 function NoteList({ notes }) {
+  const { updateNote } = useContext(NoteContext);
   const notesList = notes.length ? (
-    notes.map(note => <Note note={note} key={note.id} />)
+    notes.map(note => (
+      <Note note={note} key={note.id} onEdit={() => updateNote(note)} />
+    ))
   ) : (
     <p>There are not notes </p>
   );

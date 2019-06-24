@@ -14,7 +14,7 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         notes: state.notes.map(note => {
-          if (note.id === payload.id) {
+          if (note.id === payload.note.id) {
             return payload.note;
           }
           return note;
@@ -50,11 +50,10 @@ function NotesProvider({ children }) {
     });
   }, []);
 
-  const editNote = useCallback((id, note) => {
+  const editNote = useCallback(note => {
     dispatch({
       type: 'EDIT_NOTE',
       payload: {
-        id,
         note
       }
     });

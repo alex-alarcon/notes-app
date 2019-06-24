@@ -35,8 +35,8 @@ function App() {
           } else {
             const newNote = { ...note, id: +new Date() };
             addNote(newNote);
-            resetNote();
           }
+          resetNote();
         }}
       />
       <NoteList notes={notes} />

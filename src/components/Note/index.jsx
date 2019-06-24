@@ -7,15 +7,16 @@ import { NotesContext } from '../../store/notesContext';
 
 import IconButton from '../IconButton';
 
-function Note({ note }) {
+function Note({ note, onEdit }) {
   const { removeNote } = useContext(NotesContext);
   const noteClasses = `Note bg-${note.color}`;
   return (
     <div className={noteClasses}>
       <div className="Note__Header">
+        <IconButton iconName="fa-edit" onClick={onEdit} disabled={false} />
         <IconButton
           iconName="fa-trash"
-          handleClick={() => {
+          onClick={() => {
             removeNote(note.id);
           }}
           disabled={false}
@@ -30,7 +31,8 @@ Note.propTypes = {
   note: PropTypes.shape({
     id: PropTypes.number,
     body: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 export default Note;

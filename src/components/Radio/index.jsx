@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 import './index.css';
 
-function RadioButton({ id, value, checked, handleChange }) {
+function RadioButton({ id, value, checked, onChange }) {
   return (
     <React.Fragment>
       <label className="Radio__Label" htmlFor={value}>
@@ -13,7 +13,7 @@ function RadioButton({ id, value, checked, handleChange }) {
           type="radio"
           value={value}
           checked={checked}
-          onChange={handleChange}
+          onChange={onChange}
         />
       </label>
     </React.Fragment>
@@ -24,12 +24,12 @@ RadioButton.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   checked: PropTypes.bool,
-  handleChange: PropTypes.func
+  onChange: PropTypes.func
 };
 
 RadioButton.defaultProps = {
   checked: false,
-  handleChange() {}
+  onChange() {}
 };
 
 export default RadioButton;

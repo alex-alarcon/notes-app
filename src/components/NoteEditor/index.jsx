@@ -27,7 +27,7 @@ function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
               id={id}
               value={COLORS[color]}
               checked={note.color === COLORS[color]}
-              handleChange={handleRadioChange}
+              onChange={handleRadioChange}
               key={id}
             />
           );
@@ -35,7 +35,7 @@ function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
       </div>
       <IconButton
         iconName="fa-plus-circle"
-        handleClick={handleSave}
+        onClick={handleSave}
         disabled={note.body === ''}
       />
     </div>

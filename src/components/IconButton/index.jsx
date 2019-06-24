@@ -5,12 +5,12 @@ import './index.css';
 
 import Icon from '../Icon';
 
-function IconButton({ iconName, handleClick, disabled }) {
+function IconButton({ iconName, onClick, disabled }) {
   return (
     <button
       type="button"
       className="Button"
-      onClick={handleClick}
+      onClick={onClick}
       disabled={disabled}
     >
       <Icon iconName={iconName} />
@@ -20,12 +20,12 @@ function IconButton({ iconName, handleClick, disabled }) {
 
 IconButton.propTypes = {
   iconName: PropTypes.string.isRequired,
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
   disabled: PropTypes.bool
 };
 
 IconButton.defaultProps = {
-  handleClick: () => {},
+  onClick: () => {},
   disabled: true
 };
 export default IconButton;
