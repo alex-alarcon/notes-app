@@ -9,7 +9,7 @@ function NoteEditor({ note, handleChange }) {
       <textarea
         placeholder="What do you want to write?"
         rows={5}
-        className="NoteEditor__input"
+        className="NoteEditor__Input"
         value={note.body}
         onChange={handleChange}
       />
