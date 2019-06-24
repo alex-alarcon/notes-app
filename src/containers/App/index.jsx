@@ -1,8 +1,9 @@
 import React from 'react';
 
 import './index.css';
+
 import NoteList from '../../components/NoteList';
-import Icon from '../../components/Icon';
+import IconButton from '../../components/IconButton';
 
 function App() {
   const notes = [
@@ -22,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <NoteList notes={notes} />
-      <Icon iconName="fa-plus-circle" />
+      <IconButton iconName="fa-plus-circle" />
     </div>
   );
 }
