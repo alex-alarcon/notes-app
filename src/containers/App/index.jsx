@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import './index.css';
 
+import { NoteContext } from '../../store/noteContext';
 import { NotesContext } from '../../store/notesContext';
-
-import COLORS from '../../constants/colors';
 
 import NoteList from '../../components/NoteList';
 import NoteEditor from '../../components/NoteEditor';
-
-const initialState = { body: '', color: COLORS.YELLOW };
 
 function App() {
   const {
@@ -17,16 +14,17 @@ function App() {
     addNote,
     editNote
   } = useContext(NotesContext);
-  const [note, setNote] = useState(initialState);
+  const { note, updateNote, resetNote } = useContext(NoteContext);
+
   return (
     <div className="App">
       <NoteEditor
         note={note}
         handleTextChange={event =>
-          setNote({ ...note, body: event.target.value })
+          updateNote({ ...note, body: event.target.value })
         }
         handleRadioChange={event =>
-          setNote({
+          updateNote({
             ...note,
             color: event.target.value
           })
@@ -37,7 +35,7 @@ function App() {
           } else {
             const newNote = { ...note, id: +new Date() };
             addNote(newNote);
-            setNote(initialState);
+            resetNote();
           }
         }}
       />

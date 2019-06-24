@@ -5,10 +5,13 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import { NotesProvider } from './store/notesContext';
+import { NoteProvider } from './store/noteContext';
 
 const app = (
   <NotesProvider>
-    <App />
+    <NoteProvider>
+      <App />
+    </NoteProvider>
   </NotesProvider>
 );
 ReactDOM.render(app, document.getElementById('root'));
