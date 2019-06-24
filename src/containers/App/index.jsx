@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react';
-import randomWords from 'random-words';
 
 import './index.css';
 
 import { NotesContext } from '../../store/notesContext';
 
-import COLORS from '../../constants/backgroundColors';
+import COLORS from '../../constants/colors';
 
 import NoteList from '../../components/NoteList';
-import IconButton from '../../components/IconButton';
 import NoteEditor from '../../components/NoteEditor';
 
 function App() {
@@ -18,8 +16,9 @@ function App() {
     removeNote,
     editNote
   } = useContext(NotesContext);
+  const initialState = { body: '', color: COLORS.YELLOW };
   const [state, setState] = useState({
-    note: { body: '', color: COLORS.YELLOW }
+    note: { ...initialState }
   });
   return (
     <div className="App">
@@ -33,19 +32,17 @@ function App() {
             note: { ...state.note, color: event.target.value }
           })
         }
-      />
-      <NoteList notes={notes} />
-      <IconButton
-        iconName="fa-plus-circle"
-        handleClick={() => addNote({ id: 1, body: 'lorem' })}
-      />
-      <IconButton iconName="fa-trash" handleClick={() => removeNote(1)} />
-      <IconButton
-        iconName="fa-edit"
-        handleClick={() => {
-          editNote(1, { id: 1, body: randomWords() });
+        handleSave={() => {
+          if (state.note.id) {
+            editNote(state.note);
+          } else {
+            const newNote = { ...state.note, id: +new Date() };
+            addNote(newNote);
+            state.note = initialState;
+          }
         }}
       />
+      <NoteList notes={notes} />
     </div>
   );
 }

@@ -4,10 +4,11 @@ import { PropTypes } from 'prop-types';
 import './index.css';
 
 import RadioButton from '../Radio';
+import IconButton from '../IconButton';
 
-import BGCOLORS from '../../constants/backgroundColors';
+import COLORS from '../../constants/colors';
 
-function NoteEditor({ note, handleTextChange, handleRadioChange }) {
+function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
   const noteEditorClasses = `NoteEditor bg-${note.color}`;
   return (
     <div className={noteEditorClasses}>
@@ -19,19 +20,24 @@ function NoteEditor({ note, handleTextChange, handleRadioChange }) {
         onChange={handleTextChange}
       />
       <div className="Radio__Container">
-        {Object.keys(BGCOLORS).map(color => {
-          const id = `radio-${BGCOLORS[color]}`;
+        {Object.keys(COLORS).map(color => {
+          const id = `radio-${COLORS[color]}`;
           return (
             <RadioButton
               id={id}
-              value={BGCOLORS[color]}
-              checked={note.color === BGCOLORS[color]}
+              value={COLORS[color]}
+              checked={note.color === COLORS[color]}
               handleChange={handleRadioChange}
               key={id}
             />
           );
         })}
       </div>
+      <IconButton
+        iconName="fa-plus-circle"
+        handleClick={handleSave}
+        disabled={note.body === ''}
+      />
     </div>
   );
 }
@@ -39,19 +45,23 @@ function NoteEditor({ note, handleTextChange, handleRadioChange }) {
 NoteEditor.propTypes = {
   note: PropTypes.shape({
     id: PropTypes.number,
-    body: PropTypes.string
+    body: PropTypes.string,
+    color: PropTypes.string
   }),
   handleTextChange: PropTypes.func,
-  handleRadioChange: PropTypes.func
+  handleRadioChange: PropTypes.func,
+  handleSave: PropTypes.func
 };
 
 NoteEditor.defaultProps = {
   note: {
     id: +new Date(),
-    body: ''
+    body: '',
+    color: COLORS.YELLOW
   },
   handleTextChange() {},
-  handleRadioChange() {}
+  handleRadioChange() {},
+  handleSave() {}
 };
 
 export default NoteEditor;
