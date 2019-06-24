@@ -2,25 +2,23 @@ import React, { useCallback, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 const reducer = (state, { type, payload }) => {
-  let index;
   switch (type) {
     case 'ADD_NOTE':
       return { ...state, notes: [...state.notes, payload.note] };
     case 'DELETE_NOTE':
-      index = state.notes.findIndex(note => note.id === payload.id);
       return {
         ...state,
-        notes: [...state.notes.slice(0, index), ...state.notes.slice(index + 1)]
+        notes: state.notes.filter(note => note.id !== payload.id)
       };
     case 'EDIT_NOTE':
-      index = state.notes.findIndex(note => note.id === payload.id);
       return {
         ...state,
-        notes: [
-          ...state.notes.slice(0, index),
-          payload.note,
-          ...state.notes.slice(index + 1)
-        ]
+        notes: state.notes.map(note => {
+          if (note.id === payload.id) {
+            return payload.note;
+          }
+          return note;
+        })
       };
     default:
       return state;

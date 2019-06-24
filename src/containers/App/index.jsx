@@ -9,35 +9,35 @@ import COLORS from '../../constants/colors';
 import NoteList from '../../components/NoteList';
 import NoteEditor from '../../components/NoteEditor';
 
+const initialState = { body: '', color: COLORS.YELLOW };
+
 function App() {
   const {
     state: { notes },
     addNote,
     editNote
   } = useContext(NotesContext);
-  const initialState = { body: '', color: COLORS.YELLOW };
-  const [state, setState] = useState({
-    note: { ...initialState }
-  });
+  const [note, setNote] = useState(initialState);
   return (
     <div className="App">
       <NoteEditor
-        note={state.note}
+        note={note}
         handleTextChange={event =>
-          setState({ note: { ...state.note, body: event.target.value } })
+          setNote({ ...note, body: event.target.value })
         }
         handleRadioChange={event =>
-          setState({
-            note: { ...state.note, color: event.target.value }
+          setNote({
+            ...note,
+            color: event.target.value
           })
         }
         handleSave={() => {
-          if (state.note.id) {
-            editNote(state.note);
+          if (note.id) {
+            editNote(note);
           } else {
-            const newNote = { ...state.note, id: +new Date() };
+            const newNote = { ...note, id: +new Date() };
             addNote(newNote);
-            state.note = initialState;
+            setNote(initialState);
           }
         }}
       />
