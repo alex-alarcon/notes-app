@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import randomWords from 'random-words';
 
 import './index.css';
@@ -7,6 +7,7 @@ import { NotesContext } from '../../store/notesContext';
 
 import NoteList from '../../components/NoteList';
 import IconButton from '../../components/IconButton';
+import NoteEditor from '../../components/NoteEditor';
 
 function App() {
   const {
@@ -15,8 +16,13 @@ function App() {
     removeNote,
     editNote
   } = useContext(NotesContext);
+  const [state, setState] = useState({ note: {} });
   return (
     <div className="App">
+      <NoteEditor
+        note={state.note}
+        handleChange={event => setState({ note: { body: event.target.value } })}
+      />
       <NoteList notes={notes} />
       <IconButton
         iconName="fa-plus-circle"
