@@ -1,6 +1,6 @@
 .Note {
   border: 1px solid black;
-  width: 350px;
+  width: 100%;
 }
 
 .Note__Header {

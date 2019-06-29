@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
 
+import './index.css';
+
 import { NoteContext } from '../../store/noteContext';
 
 import Note from '../Note';
