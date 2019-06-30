@@ -2,14 +2,22 @@ import React, { useCallback, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import COLORS from '../constants/colors';
 
-const initialState = { body: '', color: COLORS.YELLOW };
+const initialState = {
+  note: { body: '', color: COLORS.YELLOW },
+  isOpen: false
+};
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case 'UPDATE_NOTE':
-      return payload.note;
+      return { note: payload.note, isOpen: true };
     case 'RESET_NOTE':
       return initialState;
+    case 'ADD_NOTE':
+      return {
+        ...state,
+        isOpen: true
+      };
     default:
       return state;
   }
@@ -18,7 +26,7 @@ const reducer = (state, { type, payload }) => {
 const NoteContext = React.createContext(initialState);
 
 function NoteProvider({ children }) {
-  const [note, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const updateNote = useCallback(newNote => {
     dispatch({
@@ -35,8 +43,14 @@ function NoteProvider({ children }) {
     });
   }, []);
 
+  const addNote = useCallback(() => {
+    dispatch({
+      type: 'ADD_NOTE'
+    });
+  });
+
   return (
-    <NoteContext.Provider value={{ note, updateNote, resetNote }}>
+    <NoteContext.Provider value={{ updateNote, resetNote, addNote, ...state }}>
       {children}
     </NoteContext.Provider>
   );

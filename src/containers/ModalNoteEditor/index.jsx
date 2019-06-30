@@ -11,13 +11,13 @@ import IconButton from '../../components/IconButton';
 
 function ModalNoteEditor() {
   const { addNote, editNote } = useContext(NotesContext);
-  const { note, updateNote, resetNote } = useContext(NoteContext);
-  const [showModal, setShowModal] = useState(false);
-  const handleClose = useCallback(() => {
-    setShowModal(false);
-    resetNote();
-  }, [resetNote]);
-  const handleOpen = useCallback(() => setShowModal(true), []);
+  const {
+    note,
+    updateNote,
+    resetNote,
+    isOpen,
+    addNote: openModal
+  } = useContext(NoteContext);
   const handleTextChange = useCallback(
     event => updateNote({ ...note, body: event.target.value }),
     [note, updateNote]
@@ -38,14 +38,13 @@ function ModalNoteEditor() {
       addNote(newNote);
     }
     resetNote();
-    setShowModal(false);
   }, [addNote, editNote, note, resetNote]);
 
   return (
     <React.Fragment>
       <Modal
-        isOpen={showModal}
-        onRequestClose={handleClose}
+        isOpen={isOpen}
+        onRequestClose={resetNote}
         closeTimeoutMS={500}
         style={{
           content: {
@@ -64,7 +63,7 @@ function ModalNoteEditor() {
       >
         <div className="d-table">
           <div className="d-table-cell">
-            <IconButton iconName="fa-times-circle" onClick={handleClose} />
+            <IconButton iconName="fa-times-circle" onClick={resetNote} />
             <NoteEditor
               note={note}
               onTextChange={handleTextChange}
@@ -75,7 +74,7 @@ function ModalNoteEditor() {
         </div>
       </Modal>
 
-      <IconButton iconName="fa-plus-circle" onClick={handleOpen} />
+      <IconButton iconName="fa-plus-circle" onClick={openModal} />
     </React.Fragment>
   );
 }
