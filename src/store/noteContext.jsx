@@ -47,7 +47,7 @@ function NoteProvider({ children }) {
     dispatch({
       type: 'ADD_NOTE'
     });
-  });
+  }, []);
 
   return (
     <NoteContext.Provider value={{ updateNote, resetNote, addNote, ...state }}>
