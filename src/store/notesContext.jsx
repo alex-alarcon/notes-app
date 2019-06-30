@@ -1,5 +1,10 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useCallback } from 'react';
+import { usePersistReducer } from 'use-persist';
 import PropTypes from 'prop-types';
+
+const persistenceSettings = {
+  key: 'notes'
+};
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
@@ -30,34 +35,47 @@ const initialState = { notes: [] };
 const NotesContext = React.createContext(initialState);
 
 function NotesProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = usePersistReducer(
+    persistenceSettings,
+    reducer,
+    initialState
+  );
 
-  const addNote = useCallback(note => {
-    dispatch({
-      type: 'ADD_NOTE',
-      payload: {
-        note
-      }
-    });
-  }, []);
+  const addNote = useCallback(
+    note => {
+      dispatch({
+        type: 'ADD_NOTE',
+        payload: {
+          note
+        }
+      });
+    },
+    [dispatch]
+  );
 
-  const removeNote = useCallback(id => {
-    dispatch({
-      type: 'DELETE_NOTE',
-      payload: {
-        id
-      }
-    });
-  }, []);
+  const removeNote = useCallback(
+    id => {
+      dispatch({
+        type: 'DELETE_NOTE',
+        payload: {
+          id
+        }
+      });
+    },
+    [dispatch]
+  );
 
-  const editNote = useCallback(note => {
-    dispatch({
-      type: 'EDIT_NOTE',
-      payload: {
-        note
-      }
-    });
-  }, []);
+  const editNote = useCallback(
+    note => {
+      dispatch({
+        type: 'EDIT_NOTE',
+        payload: {
+          note
+        }
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <NotesContext.Provider value={{ state, addNote, removeNote, editNote }}>
