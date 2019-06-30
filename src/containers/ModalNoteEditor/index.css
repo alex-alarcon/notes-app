@@ -15,19 +15,3 @@
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
-
-.d-table {
-  display: table;
-  height: 100%;
-  width: 100%;
-  padding: 16px;
-}
-
-.d-table-cell {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.d-table-cell button {
-  pointer-events: all;
-}

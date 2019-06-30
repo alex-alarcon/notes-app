@@ -1,8 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import './index.css';
-
 import Icon from '../Icon';
 
 function IconButton({ iconName, onClick, disabled }) {
@@ -28,4 +26,5 @@ IconButton.defaultProps = {
   onClick: () => {},
   disabled: false
 };
+
 export default IconButton;

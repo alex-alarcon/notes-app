@@ -20,10 +20,12 @@ function ModalNoteEditor() {
     isOpen,
     addNote: openModal
   } = useContext(NoteContext);
+
   const handleTextChange = useCallback(
     event => updateNote({ ...note, body: event.target.value }),
     [note, updateNote]
   );
+
   const handleRadioChange = useCallback(
     event =>
       updateNote({
@@ -32,6 +34,7 @@ function ModalNoteEditor() {
       }),
     [note, updateNote]
   );
+
   const handleSave = useCallback(() => {
     if (note.id) {
       editNote(note);

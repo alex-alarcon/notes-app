@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable react/no-danger */
 import marked from 'marked';
 import { PropTypes } from 'prop-types';
+import React, { useEffect, useRef } from 'react';
 
-import './index.css';
-
-import RadioButton from '../Radio';
 import IconButton from '../IconButton';
+import RadioButton from '../Radio';
 
 import COLORS from '../../constants/colors';
 
@@ -21,13 +20,15 @@ function NoteEditor({
   onSave,
   onPreview
 }) {
-  const noteEditorClasses = `NoteEditor bg-${note.color}`;
   const inputRef = useRef(null);
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, [preview]);
+
+  const noteEditorClasses = `NoteEditor bg-${note.color}`;
+
   return (
     <div className={noteEditorClasses}>
       {preview ? (
@@ -66,7 +67,7 @@ function NoteEditor({
       <IconButton
         iconName="fa-plus-circle"
         onClick={onSave}
-        disabled={note.body === ''}
+        disabled={note.body.trim() === ''}
       />
     </div>
   );

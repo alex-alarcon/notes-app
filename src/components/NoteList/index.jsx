@@ -1,31 +1,29 @@
 import React, { useContext } from 'react';
-import { PropTypes } from 'prop-types';
 
 import './index.css';
 
 import { NoteContext } from '../../store/noteContext';
+import { NotesContext } from '../../store/notesContext';
 
 import Note from '../Note';
 
-function NoteList({ notes }) {
+function NoteList() {
   const { showNote } = useContext(NoteContext);
-  const notesList = notes.length ? (
-    notes.map(note => (
-      <Note note={note} key={note.id} onEdit={() => showNote(note)} />
-    ))
-  ) : (
-    <p>There are not notes </p>
-  );
-  return <div className="NoteList">{notesList}</div>;
+  const {
+    state: { notes }
+  } = useContext(NotesContext);
+
+  if (notes.length) {
+    return (
+      <div className="NoteList">
+        {notes.map(note => (
+          <Note note={note} key={note.id} onEdit={() => showNote(note)} />
+        ))}
+      </div>
+    );
+  }
+
+  return <p>There are not notes </p>;
 }
 
-NoteList.propTypes = {
-  notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      body: PropTypes.string,
-      color: PropTypes.string
-    })
-  ).isRequired
-};
 export default NoteList;
