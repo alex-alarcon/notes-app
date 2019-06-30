@@ -23,7 +23,8 @@ NoteList.propTypes = {
   notes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      body: PropTypes.string
+      body: PropTypes.string,
+      color: PropTypes.string
     })
   ).isRequired
 };

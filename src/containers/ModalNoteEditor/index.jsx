@@ -13,7 +13,10 @@ function ModalNoteEditor() {
   const { addNote, editNote } = useContext(NotesContext);
   const { note, updateNote, resetNote } = useContext(NoteContext);
   const [showModal, setShowModal] = useState(false);
-  const handleClose = useCallback(() => setShowModal(false), []);
+  const handleClose = useCallback(() => {
+    setShowModal(false);
+    resetNote();
+  }, [resetNote]);
   const handleOpen = useCallback(() => setShowModal(true), []);
   const handleTextChange = useCallback(
     event => updateNote({ ...note, body: event.target.value }),
@@ -43,7 +46,6 @@ function ModalNoteEditor() {
       <Modal
         isOpen={showModal}
         onRequestClose={handleClose}
-        shouldCloseOnOverlayClick
         closeTimeoutMS={500}
         style={{
           content: {
@@ -55,17 +57,14 @@ function ModalNoteEditor() {
             left: 0,
             padding: 0,
             width: '100vw',
-            height: '100vh'
+            height: '100vh',
+            pointerEvents: 'none'
           }
         }}
       >
         <div className="d-table">
           <div className="d-table-cell">
-            <IconButton
-              iconName="fa-times-circle"
-              disabled={false}
-              onClick={handleClose}
-            />
+            <IconButton iconName="fa-times-circle" onClick={handleClose} />
             <NoteEditor
               note={note}
               onTextChange={handleTextChange}
@@ -76,11 +75,7 @@ function ModalNoteEditor() {
         </div>
       </Modal>
 
-      <IconButton
-        iconName="fa-plus-circle"
-        disabled={false}
-        onClick={handleOpen}
-      />
+      <IconButton iconName="fa-plus-circle" onClick={handleOpen} />
     </React.Fragment>
   );
 }
