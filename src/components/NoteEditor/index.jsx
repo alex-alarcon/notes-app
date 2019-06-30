@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import marked from 'marked';
 import { PropTypes } from 'prop-types';
 
@@ -22,6 +22,12 @@ function NoteEditor({
   onPreview
 }) {
   const noteEditorClasses = `NoteEditor bg-${note.color}`;
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [preview]);
   return (
     <div className={noteEditorClasses}>
       {preview ? (
@@ -38,6 +44,7 @@ function NoteEditor({
           className="NoteEditor__Input"
           value={note.body}
           onChange={onTextChange}
+          ref={inputRef}
         />
       )}
 
