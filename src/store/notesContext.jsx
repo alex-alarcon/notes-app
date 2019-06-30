@@ -9,7 +9,14 @@ const persistenceSettings = {
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case 'ADD_NOTE':
-      return { ...state, notes: [...state.notes, payload.note] };
+      return {
+        ...state,
+        notes: state.notes.concat({
+          ...payload.note,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+      };
     case 'DELETE_NOTE':
       return {
         ...state,
@@ -20,7 +27,7 @@ const reducer = (state, { type, payload }) => {
         ...state,
         notes: state.notes.map(note => {
           if (note.id === payload.note.id) {
-            return payload.note;
+            return { ...payload.note, updatedAt: new Date() };
           }
           return note;
         })
@@ -34,11 +41,24 @@ const initialState = { notes: [] };
 
 const NotesContext = React.createContext(initialState);
 
+const init = state => {
+  return {
+    notes: state.notes.map(note => {
+      return {
+        ...note,
+        createdAt: new Date(note.createdAt),
+        updatedAt: new Date(note.updatedAt)
+      };
+    })
+  };
+};
+
 function NotesProvider({ children }) {
   const [state, dispatch] = usePersistReducer(
     persistenceSettings,
     reducer,
-    initialState
+    initialState,
+    init
   );
 
   const addNote = useCallback(

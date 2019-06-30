@@ -24,6 +24,31 @@ function Note({ note, onEdit }) {
         />
       </div>
       <pre className="Note__Body">{note.body}</pre>
+      <div className="Note__Footer">
+        <span>
+          created at:
+          {note.createdAt.toLocaleDateString('es-CO', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+          })}
+        </span>
+        {' - '}
+        <span>
+          updated at:
+          {note.updatedAt.toLocaleDateString('es-CO', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+          })}
+        </span>
+      </div>
     </div>
   );
 }
