@@ -8,10 +8,10 @@ import { NoteContext } from '../../store/noteContext';
 import Note from '../Note';
 
 function NoteList({ notes }) {
-  const { updateNote } = useContext(NoteContext);
+  const { showNote } = useContext(NoteContext);
   const notesList = notes.length ? (
     notes.map(note => (
-      <Note note={note} key={note.id} onEdit={() => updateNote(note)} />
+      <Note note={note} key={note.id} onEdit={() => showNote(note)} />
     ))
   ) : (
     <p>There are not notes </p>

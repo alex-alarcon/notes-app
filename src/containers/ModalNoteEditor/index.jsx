@@ -15,6 +15,8 @@ function ModalNoteEditor() {
     note,
     updateNote,
     resetNote,
+    showPreview,
+    preview,
     isOpen,
     addNote: openModal
   } = useContext(NoteContext);
@@ -66,9 +68,11 @@ function ModalNoteEditor() {
             <IconButton iconName="fa-times-circle" onClick={resetNote} />
             <NoteEditor
               note={note}
+              preview={preview}
               onTextChange={handleTextChange}
               onRadioChange={handleRadioChange}
               onSave={handleSave}
+              onPreview={showPreview}
             />
           </div>
         </div>

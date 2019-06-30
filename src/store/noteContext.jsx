@@ -4,19 +4,32 @@ import COLORS from '../constants/colors';
 
 const initialState = {
   note: { body: '', color: COLORS.YELLOW },
-  isOpen: false
+  isOpen: false,
+  preview: false
 };
 
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case 'UPDATE_NOTE':
-      return { note: payload.note, isOpen: true };
+      return { ...state, note: payload.note };
     case 'RESET_NOTE':
       return initialState;
     case 'ADD_NOTE':
       return {
         ...state,
-        isOpen: true
+        isOpen: true,
+        preview: false
+      };
+    case 'SHOW_PREVIEW':
+      return {
+        ...state,
+        preview: !state.preview
+      };
+    case 'SHOW_NOTE':
+      return {
+        note: payload.note,
+        isOpen: true,
+        preview: true
       };
     default:
       return state;
@@ -49,8 +62,30 @@ function NoteProvider({ children }) {
     });
   }, []);
 
+  const showPreview = useCallback(() => {
+    dispatch({
+      type: 'SHOW_PREVIEW'
+    });
+  }, []);
+
+  const showNote = useCallback(note => {
+    dispatch({
+      type: 'SHOW_NOTE',
+      payload: { note }
+    });
+  }, []);
+
   return (
-    <NoteContext.Provider value={{ updateNote, resetNote, addNote, ...state }}>
+    <NoteContext.Provider
+      value={{
+        showPreview,
+        showNote,
+        updateNote,
+        resetNote,
+        addNote,
+        ...state
+      }}
+    >
       {children}
     </NoteContext.Provider>
   );
