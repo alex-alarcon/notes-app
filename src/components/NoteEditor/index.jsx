@@ -8,7 +8,7 @@ import IconButton from '../IconButton';
 
 import COLORS from '../../constants/colors';
 
-function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
+function NoteEditor({ note, onTextChange, onRadioChange, onSave }) {
   const noteEditorClasses = `NoteEditor bg-${note.color}`;
   return (
     <div className={noteEditorClasses}>
@@ -17,7 +17,7 @@ function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
         rows={5}
         className="NoteEditor__Input"
         value={note.body}
-        onChange={handleTextChange}
+        onChange={onTextChange}
       />
       <div className="Radio__Container">
         {Object.keys(COLORS).map(color => {
@@ -27,7 +27,7 @@ function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
               id={id}
               value={COLORS[color]}
               checked={note.color === COLORS[color]}
-              onChange={handleRadioChange}
+              onChange={onRadioChange}
               key={id}
             />
           );
@@ -35,7 +35,7 @@ function NoteEditor({ note, handleTextChange, handleRadioChange, handleSave }) {
       </div>
       <IconButton
         iconName="fa-plus-circle"
-        onClick={handleSave}
+        onClick={onSave}
         disabled={note.body === ''}
       />
     </div>
@@ -48,9 +48,9 @@ NoteEditor.propTypes = {
     body: PropTypes.string,
     color: PropTypes.string
   }),
-  handleTextChange: PropTypes.func,
-  handleRadioChange: PropTypes.func,
-  handleSave: PropTypes.func
+  onTextChange: PropTypes.func,
+  onRadioChange: PropTypes.func,
+  onSave: PropTypes.func
 };
 
 NoteEditor.defaultProps = {
@@ -59,9 +59,9 @@ NoteEditor.defaultProps = {
     body: '',
     color: COLORS.YELLOW
   },
-  handleTextChange() {},
-  handleRadioChange() {},
-  handleSave() {}
+  onTextChange() {},
+  onRadioChange() {},
+  onSave() {}
 };
 
 export default NoteEditor;

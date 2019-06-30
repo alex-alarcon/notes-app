@@ -68,9 +68,9 @@ function ModalNoteEditor() {
             />
             <NoteEditor
               note={note}
-              handleTextChange={handleTextChange}
-              handleRadioChange={handleRadioChange}
-              handleSave={handleSave}
+              onTextChange={handleTextChange}
+              onRadioChange={handleRadioChange}
+              onSave={handleSave}
             />
           </div>
         </div>
