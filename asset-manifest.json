@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/notes-app/static/css/main.07fb48cd.chunk.css",
+    "main.js": "/notes-app/static/js/main.b3bde8b4.chunk.js",
+    "main.js.map": "/notes-app/static/js/main.b3bde8b4.chunk.js.map",
+    "runtime~main.js": "/notes-app/static/js/runtime~main.2c46edbd.js",
+    "runtime~main.js.map": "/notes-app/static/js/runtime~main.2c46edbd.js.map",
+    "static/css/2.6e712fc3.chunk.css": "/notes-app/static/css/2.6e712fc3.chunk.css",
+    "static/js/2.c9d022a8.chunk.js": "/notes-app/static/js/2.c9d022a8.chunk.js",
+    "static/js/2.c9d022a8.chunk.js.map": "/notes-app/static/js/2.c9d022a8.chunk.js.map",
+    "index.html": "/notes-app/index.html",
+    "precache-manifest.63f276af2478f7f588f82a92aa2f960e.js": "/notes-app/precache-manifest.63f276af2478f7f588f82a92aa2f960e.js",
+    "service-worker.js": "/notes-app/service-worker.js",
+    "static/css/2.6e712fc3.chunk.css.map": "/notes-app/static/css/2.6e712fc3.chunk.css.map",
+    "static/css/main.07fb48cd.chunk.css.map": "/notes-app/static/css/main.07fb48cd.chunk.css.map",
+    "static/media/all.min.css": "/notes-app/static/media/fa-solid-900.ef3df984.eot"
+  }
+}
