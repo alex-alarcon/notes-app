@@ -20,3 +20,11 @@ code {
   display: block;
   width: 100%;
 }
+
+.text-xxs {
+  font-size: 0.625rem;
+}
+
+.bg-gray-alpha {
+  background-color: rgba(134, 134, 134, 0.6);
+}

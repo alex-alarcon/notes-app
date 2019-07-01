@@ -1,7 +1,5 @@
+import React from 'react';
 import Modal from 'react-modal';
-import React, { useContext } from 'react';
-
-import './index.css';
 
 import ModalNoteEditor from '../ModalNoteEditor';
 import NoteList from '../../components/NoteList';

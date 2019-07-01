@@ -7,7 +7,6 @@ import { NoteContext } from '../../store/noteContext';
 import { NotesContext } from '../../store/notesContext';
 
 import NoteEditor from '../../components/NoteEditor';
-import IconButton from '../../components/IconButton';
 
 function ModalNoteEditor() {
   const { addNote, editNote } = useContext(NotesContext);
@@ -17,8 +16,7 @@ function ModalNoteEditor() {
     resetNote,
     showPreview,
     preview,
-    isOpen,
-    addNote: openModal
+    isOpen
   } = useContext(NoteContext);
 
   const handleTextChange = useCallback(
@@ -66,9 +64,8 @@ function ModalNoteEditor() {
           }
         }}
       >
-        <div className="d-table">
-          <div className="d-table-cell">
-            <IconButton iconName="fa-times-circle" onClick={resetNote} />
+        <div className="table w-full h-full">
+          <div className="table-cell align-middle">
             <NoteEditor
               note={note}
               preview={preview}
@@ -76,12 +73,11 @@ function ModalNoteEditor() {
               onRadioChange={handleRadioChange}
               onSave={handleSave}
               onPreview={showPreview}
+              onCancel={resetNote}
             />
           </div>
         </div>
       </Modal>
-
-      <IconButton iconName="fa-plus-circle" onClick={openModal} />
     </React.Fragment>
   );
 }

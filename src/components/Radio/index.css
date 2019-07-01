@@ -1,0 +1,7 @@
+input + i {
+  opacity: 0;
+}
+
+input:checked + i {
+  opacity: 1;
+}
